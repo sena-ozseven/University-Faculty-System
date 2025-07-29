@@ -55,6 +55,7 @@ public class University {
     //
     // 5.2 This would allow:
     //     university.getFaculties().add(...); // Not safe!
+    //     because this can add another faculties that are not belong to that universi ty
     //
     // 5.3 Safer alternatives:
     //     - Return an unmodifiable copy      --> e.g. Collections.unmodifiableList(this.faculties) -- read-only
@@ -65,8 +66,11 @@ public class University {
     }
 
     public void addFaculty(Faculty faculty) {
-        this.faculties.add(faculty);
+        if (faculty.getUniversity().equals(this)) {  //By this way, we can ONLY add faculties that are belong to the same university.
+            this.faculties.add(faculty);
+        }
     }
+
     public void removeFaculty(Faculty faculty) {
         this.faculties.remove(faculty);
     }
