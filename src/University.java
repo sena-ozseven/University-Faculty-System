@@ -15,12 +15,22 @@ public class University {
     public University(Long id, String name) {
         this.id = id;
 
+        //STRING VALIDATION w/ single responsibility
                 // if (name == null || name.isBlank() || name.isEmpty()) {
                     //throw new IllegalArgumentException("Name cannot be null, empty or blank.");
                 // }
                 //--> this is against to the single responsibility principle.
                 // Meaning, this is not a responsibility for the University class.
                 //To make this control, we create a new java class named "Utility" or "Validator".
+                //With the help of those ways, we respect the single responsibility.
+        //--> single responsibility continued...
+        //ValidationUtil's two ways of application (you can choose one of them, does not matter.):
+        //application for the 1st way of doing it:
+                // if (!ValidationUtil.isValid(name)) {
+                //    throw new IllegalArgumentException(" Name cannot be null, empty or blank.");
+                //}
+        //application for the 2nd way of doing it:
+        ValidationUtil.IsValid(name, "Name cannot be null, empty or blank." );
 
         this.name = name;
         // 2.1 Initialize faculties as an empty list to avoid null pointer issues later.
